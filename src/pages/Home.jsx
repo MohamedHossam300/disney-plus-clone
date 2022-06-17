@@ -2,12 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import Slides from '../components/Slides'
 import Viewers from '../components/Viewers'
+import Movies from '../components/Movies'
 
 const Home = () => {
   return (
     <Container>
         <Slides />
         <Viewers />
+        <Movies />
     </Container>
   )
 }
