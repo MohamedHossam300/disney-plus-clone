@@ -1,13 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { getAll } from '../movieAPI'
+import { useDispatch } from "react-redux"
+import { setMovies } from "../features/movie/movieSlice"
 import styled from 'styled-components'
 import Slides from '../components/Slides'
 import Viewers from '../components/Viewers'
 import Movies from '../components/Movies'
 
 const Home = () => {
-  useEffect(() => {
+  const dispatch = useDispatch();
 
-  }, [])
+  useEffect(() => {
+    getAll().then(movie => {
+      dispatch(setMovies(movie))
+    })
+  }, [dispatch])
 
   return (
     <Container>

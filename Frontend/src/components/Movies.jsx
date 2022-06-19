@@ -1,56 +1,17 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
+import { selectMovies } from '../features/movie/movieSlice'
 
 const Movies = () => {
+    const movies = useSelector(selectMovies)
+
     const [collections] = useState([
         {
-            id: 1,
+            id: "1",
             name: "Recommended for You",
         }
-    ])
-
-    const [movies] = useState([
-        {
-            collectionId: 1,
-            name: "Simpson family",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWGXQC6nJNY88CQCWNN0KoEbj4FtVsxDxG_Q&usqp=CAU"
-        },
-        {
-            collectionId: 1,
-            name: "Simpson family",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWGXQC6nJNY88CQCWNN0KoEbj4FtVsxDxG_Q&usqp=CAU"
-        },
-        {
-            collectionId: 1,
-            name: "Simpson family",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWGXQC6nJNY88CQCWNN0KoEbj4FtVsxDxG_Q&usqp=CAU"
-        },
-        {
-            collectionId: 1,
-            name: "Simpson family",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWGXQC6nJNY88CQCWNN0KoEbj4FtVsxDxG_Q&usqp=CAU"
-        },
-        {
-            collectionId: 1,
-            name: "Simpson family",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWGXQC6nJNY88CQCWNN0KoEbj4FtVsxDxG_Q&usqp=CAU"
-        },
-        {
-            collectionId: 1,
-            name: "Simpson family",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWGXQC6nJNY88CQCWNN0KoEbj4FtVsxDxG_Q&usqp=CAU"
-        },
-        {
-            collectionId: 1,
-            name: "Simpson family",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWGXQC6nJNY88CQCWNN0KoEbj4FtVsxDxG_Q&usqp=CAU"
-        },
-        {
-            collectionId: 1,
-            name: "Simpson family",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWGXQC6nJNY88CQCWNN0KoEbj4FtVsxDxG_Q&usqp=CAU"
-        },
     ])
 
     return (
