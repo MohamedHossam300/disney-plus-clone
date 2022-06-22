@@ -11,7 +11,19 @@ const Movies = () => {
         {
             id: "1",
             name: "Recommended for You",
-        }
+        },
+        {
+            id: "2",
+            name: "New To Disney+",
+        },
+        {
+            id: "3",
+            name: "Originals",
+        },
+        {
+            id: "4",
+            name: "Trending",
+        },
     ])
 
     return (
@@ -20,18 +32,18 @@ const Movies = () => {
                 return (
                     <React.Fragment key={collection.id}>
                         <h4> {collection.name} </h4>
-                        <Link to="/detail">
-                            <Content>
-                                {movies.filter(movie => movie.collectionId === collection.id)
-                                    .map((movie, index) => {
-                                        return (
-                                            <Wrap key={index}>
-                                                <img src={movie.image} alt={movie.name} />
-                                            </Wrap>
-                                        )
-                                    })}
-                            </Content>
-                        </Link>
+                        <Content>
+                            {Array.isArray(movies) ? movies.filter(movie => movie.collectionId === collection.id)
+                                .map((movie, index) => {
+                                    return (
+                                        <Wrap key={index}>
+                                            <Link to={`/detail/${movie._id}`}>
+                                                <img src={movie.cardImage} alt={movie.title} />
+                                            </Link>
+                                        </Wrap>
+                                    )
+                                }) : []}
+                        </Content>
                     </React.Fragment>
                 )
             })}
@@ -49,9 +61,15 @@ const Content = styled.div`
     display: grid;
     grid-gap: 25px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 `
 
 const Wrap = styled.div`
+    max-width: 300px;
+    max-height: 175px;
     cursor: pointer;
     border-radius: 10px;
     overflow: hidden;

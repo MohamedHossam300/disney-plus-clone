@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const Header = () => {
-  const [ menuContents ] = useState([
+
+  const [menuContents] = useState([
     {
       image: "/icons/home-icon.svg",
       title: "Home"
@@ -31,18 +32,18 @@ const Header = () => {
 
   return (
     <Container>
-        <Logo src="/images/logo.svg" alt="logo" />
-        <WrapMenu>
-          {menuContents.map((menuContent, index) => {
-            return(
-              <a key={index}>
-                <img src={menuContent.image} alt={menuContent.title} />
-                <span>{menuContent.title}</span>
-              </a>
-            )
-          })}
-        </WrapMenu>
-        <UserImage src='https://yt3.ggpht.com/ytc/AKedOLS0vR63cuTsvtKl1IwsWokuyU-w5kOpuH0SloOhWsL9DEVhcO66Qb9KOLk9P35F=s88-c-k-c0x00ffffff-no-rj-mo' />
+      <Logo src="/images/logo.svg" alt="logo" />
+            <WrapMenu>
+              {menuContents.map((menuContent, index) => {
+                return (
+                  <a key={index}>
+                    <img src={menuContent.image} alt={menuContent.title} />
+                    <span>{menuContent.title}</span>
+                  </a>
+                )
+              })}
+            </WrapMenu>
+            <UserImage src='https://yt3.ggpht.com/ytc/AKedOLS0vR63cuTsvtKl1IwsWokuyU-w5kOpuH0SloOhWsL9DEVhcO66Qb9KOLk9P35F=s88-c-k-c0x00ffffff-no-rj-mo' />
     </Container>
   )
 }
@@ -50,11 +51,16 @@ const Header = () => {
 export default Header
 
 const Container = styled.div`
+    top: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
     height: 70px;
     background: #090B13;
     display: flex;
     align-items: center;
     padding: 0 36px;
+    z-index: 10;
 `
 
 const Logo = styled.img`

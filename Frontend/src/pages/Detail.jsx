@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { getMovie } from '../movieAPI'
 
 const Detail = () => {
+    const { id } = useParams()
+    const [detail, setDetail] = useState({})
+
+    useEffect(() => {
+        getMovie(id).then(movie => {
+            setDetail(movie)
+        })
+      }, [id])
+
     return (
         <Container>
             <Background>
-                <img src='https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg' alt='' />
+                <img src={detail.backgroundImage} alt={detail.title} />
             </Background>
             <ImageTitle>
-                <img src='https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78' alt='' />
+                <img src={detail.titleImage} alt={detail.title} />
             </ImageTitle>
             <Controls>
                 <PlayButton>
@@ -27,10 +38,10 @@ const Detail = () => {
                 </GroupWatchButton>
             </Controls>
             <SubTitle>
-                2018 • 7m • Family, Fantasy, Kids, Animation
+                {detail.subTitle}
             </SubTitle>
             <Description>
-                A Chinese mom who's sad when her grown son leaves home gets another chance at motherhood when one of her dumplings springs to life. But she finds that nothing stays cute and small forever.
+                {detail.description}
             </Description>
         </Container>
     )
@@ -65,7 +76,7 @@ const ImageTitle = styled.div`
     min-height: 170px;
     width: 35vw;
     min-width: 200px;
-    margin-top: 60px;
+    margin-top: 130px;
 
     img {
         width: 100%;
@@ -116,8 +127,8 @@ const AddButton = styled.button`
     cursor: pointer;
 
     span {
-        height: 100%;
-        width: 100%;
+        height: 40px;
+        width: 40px;
         text-align: center;
         font-size: 30px;
         color: white;
@@ -127,6 +138,10 @@ const AddButton = styled.button`
 
 const GroupWatchButton = styled(AddButton)`
     background-color: #000000;
+
+    img {
+        width: 100%
+    }
 `
 
 const SubTitle = styled.div`

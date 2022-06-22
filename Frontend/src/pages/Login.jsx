@@ -21,6 +21,7 @@ const Login = () => {
 export default Login
 
 const Container = styled.div`
+    margin-top: 70px;
     position: relative;
     height: calc(100vh - 70px);
     display: flex;

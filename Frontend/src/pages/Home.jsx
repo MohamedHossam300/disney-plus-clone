@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {  useEffect } from 'react'
 import { getAll } from '../movieAPI'
 import { useDispatch } from "react-redux"
 import { setMovies } from "../features/movie/movieSlice"
@@ -32,6 +32,7 @@ const Container = styled.div`
     padding: 0 calc(3.5vw + 5px);
     position: relative;
     overflow: hidden;
+    padding-bottom: 40px;
 
     &:before {
         background: url("/images/home-background.png") center center / cover
