@@ -49,7 +49,7 @@ start on port`8080`
 
 ### Frontend Tools
 
-React, Redux, Redux Toolkit, styled components
+React, Redux, React Router, Redux Toolkit, styled components
 
 ### Backend Tools
 
