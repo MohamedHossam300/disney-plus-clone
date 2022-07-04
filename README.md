@@ -57,4 +57,4 @@ Typescript, express, bcrypt, mongoose
 
 ## Details
 
-this is a frontend project that connected with a simple Backend that fetch movies data from database, Signup and auth.
+this is a frontend project using React, Redux that connected with a simple Backend that fetch movies data from database, Signup and auth.
