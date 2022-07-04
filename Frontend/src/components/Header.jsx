@@ -1,49 +1,70 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { selectUserEmail, selectUserPassword } from "../features/user/userSlice"
+import { useSelector } from "react-redux"
+import { Link } from 'react-router-dom'
 
 const Header = () => {
+  const userEmail = useSelector(selectUserEmail)
+  const userPassword = useSelector(selectUserPassword)
 
   const [menuContents] = useState([
     {
       image: "/icons/home-icon.svg",
-      title: "Home"
+      title: "Home",
+      router: "/"
     },
     {
       image: "/icons/search-icon.svg",
-      title: "Search"
+      title: "Search",
+      router: null
     },
     {
       image: "/icons/watchlist-icon.svg",
-      title: "WatchList"
+      title: "WatchList",
+      router: null
     },
     {
       image: "/icons/original-icon.svg",
-      title: "Originals"
+      title: "Originals",
+      router: null
     },
     {
       image: "/icons/movie-icon.svg",
-      title: "Movies"
+      title: "Movies",
+      router: null
     },
     {
       image: "/icons/series-icon.svg",
-      title: "Series"
+      title: "Series",
+      router: null
     },
   ])
 
   return (
     <Container>
       <Logo src="/images/logo.svg" alt="logo" />
-            <WrapMenu>
-              {menuContents.map((menuContent, index) => {
-                return (
-                  <a key={index}>
-                    <img src={menuContent.image} alt={menuContent.title} />
-                    <span>{menuContent.title}</span>
-                  </a>
-                )
-              })}
-            </WrapMenu>
-            <UserImage src='https://yt3.ggpht.com/ytc/AKedOLS0vR63cuTsvtKl1IwsWokuyU-w5kOpuH0SloOhWsL9DEVhcO66Qb9KOLk9P35F=s88-c-k-c0x00ffffff-no-rj-mo' />
+      {!userEmail ? (
+        <LoginContainer>
+            <Link to="/signin">
+              <Login>Login</Login>
+            </Link>
+        </LoginContainer>
+        ) :
+      <>
+        <WrapMenu>
+          {menuContents.map((menuContent, index) => {
+            return (
+              <a key={index} href={menuContent.router}>
+                <img src={menuContent.image} alt={menuContent.title} />
+                <span>{menuContent.title}</span>
+              </a>
+            )
+          })}
+        </WrapMenu>
+        <UserImage src='https://yt3.ggpht.com/ytc/AKedOLS0vR63cuTsvtKl1IwsWokuyU-w5kOpuH0SloOhWsL9DEVhcO66Qb9KOLk9P35F=s88-c-k-c0x00ffffff-no-rj-mo' />
+      </>
+            }
     </Container>
   )
 }
@@ -114,4 +135,27 @@ const UserImage = styled.img`
   height: 48px;
   border-radius: 50%;
   cursor: pointer;
+`
+
+const Login = styled.div`
+  border: 1px solid #F9F9F9;
+  padding: 8px 16px;
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease 0s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #F9F9F9;
+    color: #000000;
+    border-color: transparent;
+  }
+`
+
+const LoginContainer = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 `

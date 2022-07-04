@@ -10,15 +10,23 @@ export const getMovie = (id) =>
         .then(res => res.json())
         .then(data => data)
 
-export const createUser = body =>
+export const createUsers = body =>
     fetch(`${api}/users`, {
         method: 'POST',
+        headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
         body: JSON.stringify(body)
     }).then(res => res.json())
 
 export const auth = body => {
     fetch(`${api}/auth`, {
         method: "POST",
+        headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
         body: JSON.stringify(body)
     }).then(res => res.json)
 }

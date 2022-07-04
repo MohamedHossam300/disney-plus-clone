@@ -1,38 +1,26 @@
 import { Schema, model } from "mongoose";
-import { compareSync } from "bcrypt";
+import { compareSync, genSalt, hashSync } from "bcrypt";
 import { config } from "../config";
 
 export type User = {
   id?: Number;
-  username: string;
   email: string;
   password: string;
 }
 
 const userSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true
-  },
   email: {
     type: String,
     required: true,
     lowercase: true,
     trim: true
   },
-  password: {
-    type: String,
-    required: true,
-    trim: true
-  },
+  password: String
 })
 
 const users = model("User", userSchema)
 
 export class UserStore {
-
   async create(user: User): Promise<User> {
     try {
       const createUsers = new users(user)
@@ -47,7 +35,9 @@ export class UserStore {
     try {
       const result = await users.findOne({email}).exec()
       if (result) {
-        if (compareSync(password + config.pepper, result.password)) {
+        const salt = await genSalt(parseInt(config.saltRounds))
+        const hash = hashSync(password + config.pepper, salt)
+        if (compareSync(hash, result.password)) {
           return result;
         }
       }

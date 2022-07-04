@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors"
 import { config } from "./src/config";
 import movie_routes from "./src/handlers/movies.handler";
+import user_router from "./src/handlers/user.handler";
 
 const app: Application = express()
 const port: number = 8080;
@@ -21,9 +22,11 @@ mongoose.connect(config.url).then((): void => {
     throw new Error(err);
 });
 
-movie_routes(app)
-
 app.use(json());
+
+movie_routes(app)
+user_router(app)
+
 
 app.listen(port, (): void => {
     console.log(`This Server Is Running in http://localhost:${port}`)

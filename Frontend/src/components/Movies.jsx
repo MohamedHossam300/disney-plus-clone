@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
+import styled from 'styled-components'
 import { selectMovies } from '../features/movie/movieSlice'
 
 const Movies = () => {

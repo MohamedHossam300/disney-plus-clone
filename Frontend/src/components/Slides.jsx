@@ -15,14 +15,14 @@ const Slides = () => {
             image: "/images/slider-badag.jpg",
             name: "sliderBadag"
         },
-        {
-            image: "/images/slider-scale.jpg",
-            name: "sliderScale"
-        },
-        {
-            image: "/images/slider-scales.jpg",
-            name: "sliderScales"
-        },
+        // {
+        //     image: "/images/slider-scale.jpg",
+        //     name: "sliderScale"
+        // },
+        // {
+        //     image: "/images/slider-scales.jpg",
+        //     name: "sliderScales"
+        // },
     ])
 
     const settings = {
